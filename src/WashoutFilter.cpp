@@ -8,9 +8,9 @@
 namespace WashoutFilter
 {
 WashoutFilter::WashoutFilter(
-    IFilter *TranslationHighPassFilter[3],
-    IFilter *TranslationLowPassFilter[2],
-    IFilter *RotationHighPassFilter[3],
+	const std::array<std::shared_ptr<IFilter>, 3>& TranslationHighPassFilter,
+	const std::array<std::shared_ptr<IFilter>, 2>& TranslationLowPassFilter,
+	const std::array<std::shared_ptr<IFilter>, 3>& RotationHighPassFilter,
     unsigned int interval_ms)
     : interval_ms(interval_ms), GRAVITY_mm(9.80665 * 1000),
       m_x(), m_y(), m_z(),
@@ -18,19 +18,13 @@ WashoutFilter::WashoutFilter(
       m_vx(), m_vy(), m_vz(),
       phi_t(), phi_r(), sit_t(), sit_r(),
       gravityX(), gravityY(), gravityZ(),
-      transScale(1), rotateScale(1)
+      transScale(1), rotateScale(1),
+      tHPFs(TranslationHighPassFilter),
+      rLPFs(TranslationLowPassFilter),
+      rHPFs(RotationHighPassFilter)
 {
-  tHPFs[0] = TranslationHighPassFilter[0];
-  tHPFs[1] = TranslationHighPassFilter[1];
-  tHPFs[2] = TranslationHighPassFilter[2];
-
-  rLPFs[0] = TranslationLowPassFilter[0];
-  rLPFs[1] = TranslationLowPassFilter[1];
-
-  rHPFs[0] = RotationHighPassFilter[0];
-  rHPFs[1] = RotationHighPassFilter[1];
-  rHPFs[2] = RotationHighPassFilter[2];
 }
+
 
 WashoutFilter::~WashoutFilter()
 {
