@@ -5,6 +5,8 @@
 
 #include <math.h>
 
+namespace WashoutFilter
+{
 WashoutFilter::WashoutFilter(
     IFilter *TranslationHighPassFilter[3],
     IFilter *TranslationLowPassFilter[2],
@@ -49,7 +51,7 @@ Position WashoutFilter::doFilter(Motion &motion)
 
   double ax_g = ax_scale + gravityX;
   double ay_g = ay_scale + gravityY;
-  double az_g = az_scale + gravityZ - GRAVITY_mm;
+  double az_g = az_scale + gravityZ;
 
   double ax_hp = tHPFs[0]->doFilter(ax_g);
   double ay_hp = tHPFs[1]->doFilter(ay_g);
@@ -141,4 +143,5 @@ void WashoutFilter::setTranslationScale(const double &scale)
 void WashoutFilter::setRotationScale(const double &scale)
 {
   rotateScale = scale;
+}
 }

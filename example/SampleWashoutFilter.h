@@ -2,6 +2,8 @@
 
 #include "../src/WashoutFilter.h"
 
+namespace WashoutFilter
+{
 class SampleWashoutFilter : public IWashoutFilter
 {
 public:
@@ -12,3 +14,4 @@ public:
 private:
   WashoutFilter *washout;
 };
+}

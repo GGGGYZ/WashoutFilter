@@ -4,6 +4,8 @@
 #include "SampleFilter.h"
 #include <iostream>
 
+namespace WashoutFilter
+{
 SampleWashoutFilter::SampleWashoutFilter(const double &interval_ms)
 {
   const double breakFrequencyForHighPass = 2.5;                          // ωn
@@ -45,4 +47,5 @@ SampleWashoutFilter::~SampleWashoutFilter()
 Position SampleWashoutFilter::doFilter(Motion &motion)
 {
   return washout->doFilter(motion);
+}
 }

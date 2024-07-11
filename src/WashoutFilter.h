@@ -4,6 +4,8 @@
 
 #include "IFilter.h"
 
+namespace WashoutFilter
+{
 class WashoutFilter : public IWashoutFilter
 {
 public:
@@ -39,3 +41,4 @@ private:
     return (x + (v * interval_ms / 1000));
   }
 };
+}

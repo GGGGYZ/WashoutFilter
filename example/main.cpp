@@ -6,6 +6,7 @@
 #include <thread>
 
 using namespace std;
+using namespace WashoutFilter;
 
 const unsigned int interval_ms = 10;
 
