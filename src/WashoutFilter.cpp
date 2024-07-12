@@ -43,9 +43,9 @@ Position WashoutFilter::doFilter(Motion &motion)
   double ay_scale = motion.getAccelerationY() * transScale;
   double az_scale = motion.getAccelerationZ() * transScale;
 
-  double ax_g = ax_scale + gravityX;
-  double ay_g = ay_scale + gravityY;
-  double az_g = az_scale + gravityZ;
+  double ax_g = ax_scale;
+  double ay_g = ay_scale;
+  double az_g = az_scale;
 
   double ax_hp = tHPFs[0]->doFilter(ax_g);
   double ay_hp = tHPFs[1]->doFilter(ay_g);
@@ -66,8 +66,8 @@ Position WashoutFilter::doFilter(Motion &motion)
   double ay_lp = rLPFs[1]->doFilter(ay_scale);
 
   // Convert low pass filtered accerarations to tilt angles
-  sit_t = -asin(ax_lp / GRAVITY_mm);
-  phi_t = asin(ay_lp / GRAVITY_mm);
+  sit_t = -asin(ax_lp);
+  phi_t = asin(ay_lp);
 
   // Check asin error
   if (!(-deg2rad(90) <= sit_t && sit_t <= deg2rad(90)))
@@ -121,9 +121,9 @@ Position WashoutFilter::doFilter(Motion &motion)
   double cphi = cos(m_phi);
   double ssit = sin(m_sit);
   double csit = cos(m_sit);
-  gravityX = GRAVITY_mm * (-ssit);
-  gravityY = GRAVITY_mm * sphi * csit;
-  gravityZ = GRAVITY_mm * cphi * csit;
+  //gravityX = GRAVITY_mm * (-ssit);
+  //gravityY = GRAVITY_mm * sphi * csit;
+  //gravityZ = GRAVITY_mm * cphi * csit;
 
   Position position(m_x, m_y, m_z, m_phi, m_sit, m_psi);
   return position;

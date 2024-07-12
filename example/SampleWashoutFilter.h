@@ -12,6 +12,6 @@ public:
   Position doFilter(Motion &motion);
 
 private:
-  WashoutFilter *washout;
+  std::shared_ptr<WashoutFilter> washout;
 };
 }
